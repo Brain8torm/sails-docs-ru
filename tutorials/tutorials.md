@@ -1,8 +1,8 @@
-# Tutorials
+# Учебные пособия
 
-Here you can find step-by-step guides for dealing with a few specific Sails use cases. There's a wealth of great information and tutorials about Sails across the web; these are just a few that have been personally vetted by members of the core team.  Currently, the objective of this section of the docs is to cover some less common scenarios that users have asked about, but that would add unnecessary complexity to the reference & conceptual documentation if they were included there. In the future, we hope to also address some common _"How do I ...?"_ questions that we hear from newcomers to the framework.
+Здесь вы можете найти пошаговые руководства по работе с несколькими конкретными вариантами использования Sails. В Интернете есть множество полезной информации и руководств по Sails; это лишь некоторые из них, которые были лично проверены членами основной команды.  В настоящее время цель этого раздела документации состоит в том, чтобы охватить некоторые менее распространенные сценарии, о которых спрашивали пользователи, но это добавило бы ненужной сложности справочной и концептуальной документации, если бы они были включены туда. В будущем мы надеемся также ответить на некоторые распространенные вопросы "Как мне...?", которые мы слышим от новичков в фреймворке.
 
-If you have a use case you would like to see addressed here, and/or are interested in writing a tutorial yourself, we appreciate your input! Just take a look at our [contribution guide](https://sailsjs.com/documentation/contributing) if you haven't already, then open an issue in the [`sails`](https://github.com/balderdashy/sails/issues/new) repo with a proposal for the tutorial you'd like to see/write.
+Если у вас есть пример использования, который вы хотели бы увидеть здесь, и/или вы заинтересованы в самостоятельном написании руководства, мы оценим ваш вклад! Просто обратитесь к нашему [руководству по внесению вклада](https://sailsjs.com/documentation/contributing), если вы еще этого не делали, затем создайте проблему в репозитории [`sails`](https://github.com/balderdashy/sails/issues/new) с предложением по учебному пособию, которое вы хотели бы увидеть или написать.
 
-<docmeta name="displayName" value="Tutorials">
+<docmeta name="displayName" value="Учебные пособия">
 <docmeta name="isOverviewPage" value="true">
