@@ -1,26 +1,26 @@
-# Low-level MySQL usage (advanced)
+# Низкоуровневое использование MySQL (продвинутый)
 
-This tutorial steps through how to access the raw MySQL connection instance from the [`mysql` package](https://www.npmjs.com/package/mysql).  This is useful for getting access to low level APIs available only in the raw client itself. 
+В этом руководстве показано, как получить доступ к необработанному экземпляру подключения MySQL из [пакета `mysql`](https://www.npmjs.com/package/mysql).  Это полезно для получения доступа к низкоуровневым API, доступным только в самом необработанном клиенте. 
 
-> Note: Many Node.js / Sails apps using MySQL will never need the kind of low-level usage described here.  If you find yourself running up against the limitations of the ORM, there is usually a workaround that does not involve writing code for the underlying database.  Even then, if you're just looking to use custom native SQL queries, read no further-- instead, check out [`sendNativeQuery()`](/documentation/reference/waterline-orm/datastores/send-native-query) instead.
+> Примечание. Многим приложениям Node.js/Sails, использующим MySQL, никогда не потребуется низкоуровневое использование, описанное здесь. Если вы обнаружите, что сталкиваетесь с ограничениями ORM, обычно существует обходной путь, который не требует написания кода для базовой базы данных. Даже в этом случае, если вы просто хотите использовать настраиваемые нативные SQL-запросы, не читайте дальше — вместо этого ознакомьтесь с [`sendNativeQuery()`](/documentation/reference/waterline-orm/datastores/send-native-query).
 >
-> Also, before we proceed, make sure you have a datastore configured to use a functional MySQL database.
+> Кроме того, прежде чем мы продолжим, убедитесь, что ваше хранилище данных настроено на использование функционирующей базы данных MySQL.
 
-### Get access to an active MySQL connection
+### Получить доступ к активному соединению MySQL
 
-To obtain an active connection from the MySQL package you can call the [`.leaseConnection()`](/documentation/reference/waterline-orm/datastores/lease-connection) method of a registered datastore object (RDI).
+Чтобы получить активное соединение из пакета MySQL, вы можете вызвать метод [`.leaseConnection()`](/documentation/reference/waterline-orm/datastores/lease-connection) зарегистрированного объекта хранилища данных (RDI).
 
-1. Get the registered datastore instance for the connection:
+1. Получите зарегистрированный экземпляр хранилища данных для подключения:
 
 ```javascript
-// Get the named datastore
+// Получает именованное хранилище данных
 var rdi = sails.getDatastore('default');
 
-// Get the datastore configured for a specific model
+// Получает хранилище данных, настроенное для конкретной модели
 var rdi = Product.getDatastore();
 ```
 
-2. Call the `leaseConnection()` method to obtain an active connection:
+2. Вызовите метод `leaseConnection()` для получения активного подключеня:
 
 ```javascript
 rdi.leaseConnection(function(connection, proceed) {
@@ -32,40 +32,40 @@ rdi.leaseConnection(function(connection, proceed) {
     proceed(undefined, results);
   });
 }, function(err, results) {
-  // Handle results here after the connection has been closed
+  // Здесь обработка результатов после закрытия соединения
 })
 ```
 
-### Get access to the low-level driver
+### Получить доступ к низкоуровневому драйверу
 
-To get access to the low-level driver and MySQL package in a Sails app, you can grab them from the registered datastore object (RDI).
+Чтобы получить доступ к низкоуровневому драйверу и пакету MySQL в приложении Sails, вы можете получить их из зарегистрированного объекта хранилища данных (RDI).
 
-1. Get the registered datastore instance for the connection:
+1. Получите зарегистрированный экземпляр хранилища данных для подключения:
 
 ```javascript
-// Get the named datastore
+// Получает именованное хранилище данных
 var rdi = sails.getDatastore('default');
 
-// Get the datastore configured for a specific model
+// Получает хранилище данных, настроенное для конкретной модели
 var rdi = Product.getDatastore();
 ```
 
-2. Get the driver from the datastore instance which contains the MySQL module:
+2. Получите драйвер из экземпляра хранилища данных, содержащего модуль MySQL.:
 
 ```javascript
 var mysql = rdi.driver.mysql;
 ```
 
-3. You can now use the module to make native requests and call other function native to the MySQL module:
+3. Теперь вы можете использовать модуль для создания собственных запросов и вызова других функций, встроенных в модуль MySQL:
 
 ```javascript
-// Get the named datastore
+// Получает именованное хранилище данных
 var rdi = sails.getDatastore('default');
 
-// Grab the MySQL module from the datastore instance
+// Захватывает модуль MySQL из экземпляра хранилища данных
 var mysql = rdi.driver.mysql;
 
-// Create a new connection
+// Создает новое подключение
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -73,10 +73,10 @@ var connection = mysql.createConnection({
   database: 'example_database'
 });
 
-// Make a query and pipe the results
+// Делает запрос и передает результаты
 connection.query('SELECT * FROM posts')
   .stream({highWaterMark: 5})
   .pipe(...);
 ```
 
-<docmeta name="displayName" value="Low-level MySQL usage (advanced)">
+<docmeta name="displayName" value="Низкоуровневое использование MySQL (продвинутый)">
