@@ -1,28 +1,28 @@
-# Using CoffeeScript in a Sails app
+# Использование CoffeeScript в приложении на Sails
 
-**The recommended language for building Node.js+Sails apps is JavaScript.**
+**Рекомендуемым языком для разработки Node.js+Sails приложений является JavaScript.**
 
-But Sails also supports using CoffeeScript to write your custom app code (like [actions](http://www.sailsjs.com/documentation/concepts/actions-and-controllers) and [models](http://www.sailsjs.com/documentation/concepts/core-concepts-table-of-contents/models-and-orm)).  You can enable this support in three steps:
+Впрочем Sails также поддерживает использование CoffeeScript для написания вами кода различных приложений (вроде [действий](http://www.sailsjs.com/documentation/concepts/actions-and-controllers) и [моделей](http://www.sailsjs.com/documentation/concepts/core-concepts-table-of-contents/models-and-orm)).  Вы можете включить поддержку этого языка в три действия:
 
-1. Run `npm install coffee-script --save` in your app folder.
-2. Add the following line at the top of your app's `app.js` file:
+1. Выполните `npm install coffee-script --save` в папке вашего приложения.
+2. Добавьте следующую строку в начало  файла `app.js`:
 ```javascript
 require('coffee-script/register');
 ```
-3. Start your app with `node app.js` instead of `sails lift`.
+3. Запустите приложение командой `node app.js` вместо `sails lift`.
 
-### Using CoffeeScript generators
+### Использование генераторов CoffeeScript
 
-If you want to use CoffeeScript to write your controllers, models or config files, just follow these steps:
- 1. Install the generators for CoffeeScript (optional): <br/>`npm install --save-dev sails-generate-controller-coffee sails-generate-model-coffee`
- 2. To generate scaffold code, add `--coffee` when using one of the supported generators from the command-line:
+Если вы хотите использовать CoffeeScript для написания файлов контроллеров, моделей или конфигурации, просто следуйте этим инструкциям:
+ 1. Установите генератор для CoffeeScript (не обязательно): <br/>`npm install --save-dev sails-generate-controller-coffee sails-generate-model-coffee`
+ 2. Для генерации демонстрационного кода, добавьте `--coffee` когда используете один из поддерживаемых генераторов в командной строке:
 ```bash
 sails generate api <foo> --coffee
-# Generate api/models/Foo.coffee and api/controllers/FooController.coffee
+# Генерирует api/models/Foo.coffee и api/controllers/FooController.coffee
 sails generate model <foo> --coffee
-# Generate api/models/Foo.coffee
+# Генерирует api/models/Foo.coffee
 sails generate controller <foo> --coffee
-# Generate api/controllers/FooController.coffee
+# Генерирует api/controllers/FooController.coffee
 ```
 
-<docmeta name="displayName" value="Using CoffeeScript">
+<docmeta name="displayName" value="Использование CoffeeScript">
