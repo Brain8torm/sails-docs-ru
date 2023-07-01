@@ -1,15 +1,15 @@
-# Using MongoDB with Node.js/Sails.js
+# Использование MongoDB с Node.js/Sails.js
 
-Sails supports the popular [MongoDB database](https://www.mongodb.com/) via the [sails-mongo adapter](https://www.npmjs.com/package/sails-mongo).
+Sails поддерживает популярную [базу данных MongoDB](https://www.mongodb.com/) с помощью [адаптера sails-mongo](https://www.npmjs.com/package/sails-mongo).
 
-> First, make sure you have access to a running MongoDB server, either on your development machine or in the cloud.  Below, 'mongodb://root@localhost/foo' refers to a locally-installed MongoDB using "foo" as the database name.  Be sure to replace that [connection URL](https://sailsjs.com/documentation/reference/configuration/sails-config-datastores#?the-connection-url) with the appropriate string for your database.
+> Сперва убедитесь в наличии доступа к запущенному серверу MongoDB, либо на локальной машине, либо в облаке.  Эта строка 'mongodb://root@localhost/foo' относится к локально установленной MongoDB, используя "foo" в качестве имени базы данных.  Убедитесь, что заменили [URL подключения](https://sailsjs.com/documentation/reference/configuration/sails-config-datastores#?the-connection-url) соответствующей строкой для вашей базы данных.
 
-### Developing locally with MongoDB
+### Локальная разработка с MongoDB
 
-To use MongoDB in your Node.js/Sails app during development:
+Для использования MongoDB в вашем Node.js/Sails приложении во время разработки:
 
-1. Run `npm install sails-mongo` in your app folder.
-2. In your `config/datastores.js` file, edit the `default` datastore configuration:
+1. Выполнить `npm install sails-mongo` папке вашего приложения.
+2. В вашем файле `config/datastores.js`, измените `default` конфигурацию хранилища данных:
 
     ```js
     default: {
@@ -17,7 +17,7 @@ To use MongoDB in your Node.js/Sails app during development:
       url: 'mongodb://root@localhost/foo'
     }
     ```
-3. In your `config/models.js` file, edit the default `id` attribute to have the appropriate `type` and `columnName` for MongoDB's primary keys:
+3. В файле `config/models.js`, измените атрибут `id`, чтобы иметь соответствующие `type` и `columnName` для первичных ключей MongoDB:
 
     ```js
     attributes: {
@@ -26,39 +26,39 @@ To use MongoDB in your Node.js/Sails app during development:
     }
     ```
 
-That's it!  Lift your app again and you should be good to go.
+Вот и все!  Снова запустите свое приложение, и все будет в порядке.
 
-#### Case-sensitivity
+#### Чувствительность к регистру
 
-After configuring your project to use MongoDB, you may notice that your Waterline [queries](https://sailsjs.com/documentation/reference/waterline-orm/queries) are now case-sensitive by default. To do case-insensitive queries, you can use [`.meta({makeLikeModifierCaseInsensitive: true})`](https://sailsjs.com/documentation/reference/waterline-orm/queries/meta).
+После настройки вашего проекта на использование MongoDB, вы можете заметить, что ваши Waterline [запросы](https://sailsjs.com/documentation/reference/waterline-orm/queries) не чувствительны к регистру по умолчанию. Чтобы сделать запросы чувствительными к регистру, можете использовать [`.meta({makeLikeModifierCaseInsensitive: true})`](https://sailsjs.com/documentation/reference/waterline-orm/queries/meta).
 
-### Deploying your app with MongoDB
+### Развертывание вашего приложения с помощью MongoDB
 
-To use MongoDB in production, edit your adapter setting in `config/env/production.js`:
+Чтобы использовать MongoDB в рабочей среде, отредактируйте настройки вашего адаптера в `config/env/production.js`:
 
 ```js
 adapter: 'sails-mongo',
 ```
 
-You may also configure your [connection URL](https://sailsjs.com/documentation/reference/configuration/sails-config-datastores#?the-connection-url) -- but many developers prefer not to check sensitive credentials into version control.  Another option is to use an environment variable:
+Вы также можете настроить свой [URL подключения](https://sailsjs.com/documentation/reference/configuration/sails-config-datastores#?the-connection-url) -- однако многие разработчики предпочитают не проверять конфиденциальные учетные данные в системе управления версиями.  Другим вариантом является использование переменной окружающей среды:
 
 ```
 sails_datastores__default__url=mongodb://heroku_12345678:random_password@ds029017.mLab.com:29017/heroku_12345678
 ```
 
-> To use MongoDB in your staging environment, edit `config/env/staging.js`.  Depending on your application, it may be acceptable to check in your staging database credentials to version control, since they are less of a security risk.
+> Чтобы использовать MongoDB в вашей промежуточной среде, измените `config/env/staging.js`.  В зависимости от вашего приложения, возможно, будет приемлемо проверить учетные данные вашей промежуточной базы данных в системе управления версиями, поскольку они представляют меньшую угрозу безопасности.
 
 
-### Low-level MongoDB usage (advanced)
+### Низкоуровневое использование MongoDB (расширенное)
 
-As with all of the [Sails database adapters](https://sailsjs.com/documentation/concepts/extending-sails/adapters/available-adapters), you can use any of the [Waterline model methods](https://sailsjs.com/documentation/reference/waterline-orm/models) to interact with your models when using `sails-mongo`.
+Как и во всех [адаптерах баз данных Sails](https://sailsjs.com/documentation/concepts/extending-sails/adapters/available-adapters), вы можете использовать любые из [методов моделей Waterline](https://sailsjs.com/documentation/reference/waterline-orm/models) для взаимодействия с вашими моделями, когда используется `sails-mongo`.
 
-For many apps, that's all you'll need-- from "hello world" to production.  Even if you run into limitations, they can usually be worked around without writing Mongo-specific code.  However, for situations when there is no alternative, it is possible to use the Mongo driver directly in your Sails app.
+Для многих приложений это все, что вам понадобится - от "hello world" до продакшена.  Даже, если вы столкнетесь с ограничениями, обычно их можно обойти без написания кода, специфичного для Mongo. Однако в ситуациях, когда альтернативы нет, можно использовать драйвер Mongo непосредственно в вашем приложении Sails.
 
-To access the lower-level &ldquo;native&rdquo; MongoDB client directly, use the [`.manager`](https://sailsjs.com/documentation/reference/waterline-orm/datastores/manager) property of the [datastore instance](https://sailsjs.com/documentation/reference/application/sails-get-datastore).
+Чтобы напрямую получить доступ к низкоуровневому &ldquo;нативному&rdquo; клиенту MongoDB, используйте свойство [`.manager`](https://sailsjs.com/documentation/reference/waterline-orm/datastores/manager) [экземпляра хранилища данных](https://sailsjs.com/documentation/reference/application/sails-get-datastore).
 
-As of `sails-mongo` v2.0.0 and above, you can access the [`MongoClient`](https://mongodb.github.io/node-mongodb-native/3.5/api/MongoClient.html) object via `manager.client`. This gives you access to the latest MongoDB improvements, like [`ClientSession`](https://mongodb.github.io/node-mongodb-native/3.5/api/ClientSession.html),
-and with it, transactions, [change streams](https://mongodb.github.io/node-mongodb-native/3.5/api/ChangeStream.html), and other new features.
+Начиная с `sails-mongo` v2.0.0 и выше, вы можете получить доступ к объекту [`MongoClient`](https://mongodb.github.io/node-mongodb-native/3.5/api/MongoClient.html) через `manager.client`. Это даст доступ к последним улучшениям MongoDB, таких как [`ClientSession`](https://mongodb.github.io/node-mongodb-native/3.5/api/ClientSession.html),
+а вместе с этим к транзакциям, [изменению потоков](https://mongodb.github.io/node-mongodb-native/3.5/api/ChangeStream.html) и другим новым особенностям.
 
 ```js
 var mongoClient = Pet.getDatastore().manager.client;
@@ -71,7 +71,7 @@ var results = await mongoClient.db('test')
 console.log(results);
 ```
 
-For a full list of methods available in the native MongoDB client, see the [Node.js MongoDB Driver API reference](https://mongodb.github.io/node-mongodb-native/3.5/api/Collection.html).
+Для получения полного списка методов, доступных в собственном клиенте MongoDB, смотрите [справочник API Node.js MongoDB Driver](https://mongodb.github.io/node-mongodb-native/3.5/api/Collection.html).
 
 
-<docmeta name="displayName" value="Using MongoDB">
+<docmeta name="displayName" value="Использование MongoDB">
