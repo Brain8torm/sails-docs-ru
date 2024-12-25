@@ -1,12 +1,12 @@
 # app.js
 
-This file is the conventional entry point for a _production_ Sails/Node.js app.
+Этот файл является общепринятой точкой входа для _продакшн_ версии Sails/Node.js приложения.
 
-When developing on your local computer, and you run `sails lift`, the code in `app.js` is not executed.  Instead, this file exists to provide an easy, out-of-the-box way to run your app _without_ typing `sails lift`.  This is most likely how you'll start your app in production (i.e. `node app`, or `npm start`).
+Во время разработки на локальном компьютере при выполнении команды `sails lift` код в `app.js` не выполняется.  Вместо этого, этот файл существует для того, чтобы предоставить простой, готовый способ запуска приложения _без_ ввода `sails lift`.  Скорее всего, именно так вы будете запускать ваше приложение в продакшн (например, `node app` или `npm start`).
 
-For example, when you deploy to most PaaS vendors like [Heroku](http://heroku.com), they will automatically detect that you're running a Sails/Node.js app and execute this file with the `NODE_ENV` environment variable set to production.
+Например, при развертывании на большинстве PaaS-провайдеров, таких как [Heroku](http://heroku.com), они автоматически определят, что вы запускаете приложение Sails/Node.js, и выполнят этот файл с переменной окружения `NODE_ENV`, установленной на production.
 
-> Whatever stage of the development lifecycle you're at, you can safely ignore `app.js`.  It's good to go out of the box for most apps.  But the code in `app.js` also serves as an easy-to-reference example of how to use Sails programmatically.  So you might want to take a look at it if you plan on writing automated tests, scheduled jobs, manual database migrations, or administration scripts.
+> На каком бы этапе жизненного цикла разработки вы ни находились, вы можете смело игнорировать `app.js`.  Для большинства приложений его вполне можно использовать из коробки.  Но код в `app.js` также служит удобным примером того, как использовать Sails программно.  Поэтому вам стоит взглянуть на него, если вы планируете писать автоматические тесты, задания по расписанию, ручные миграции баз данных или скрипты администрирования.
 
 
 <docmeta name="displayName" value="app.js">
